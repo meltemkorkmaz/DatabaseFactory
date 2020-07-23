@@ -1,7 +1,8 @@
 package myexercise;
 import java.sql.*;
+import myexercise.Config;
 
-class DatabaseFactory {
+class DatabaseFactory extends Config {
     public static void main(String [] args)
     {
          DatabaseFactory DF = new DatabaseFactory();
@@ -16,9 +17,9 @@ class DatabaseFactory {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
-                String url = "jdbc:mysql://localhost:3306/deneme?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-                String user = "root";
-                String password = "meltem7997";
+                String url = data[0];
+                String user = data[1];
+                String password = data[2];
                 con = DriverManager.getConnection(url, user, password);
 
                 st = con.createStatement();
@@ -33,7 +34,6 @@ class DatabaseFactory {
 
     public void execute() {
         try {
-            //ogrenci tablomuzu dolduruyoruz.
             java.util.Scanner kb = new java.util.Scanner(System.in);
             String sql = "";
             connect();
@@ -43,7 +43,7 @@ class DatabaseFactory {
                 System.out.print("Student surname:");
                 String surname = kb.nextLine();
 
-                sql = String.format("INSERT INTO ogrenci VALUES(7 , '%s', '%s')", name, surname);
+                sql = String.format("INSERT INTO ogrenci VALUES(9 , '%s', '%s')", name, surname);
                 st.executeUpdate(sql);
         }
             catch (SQLException e) {
