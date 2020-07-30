@@ -12,15 +12,18 @@ class DatabaseFactory extends Config {
     private Connection con;
     private ResultSet rs;
 
+
     public void connect() {
         if (con == null) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
-                String url = data[0];
-                String user = data[1];
-                String password = data[2];
-                con = DriverManager.getConnection(url, user, password);
+                getPropValues();
+               String url = data[0];
+               String user = data[1];
+               String password = data[2];
+
+               con = DriverManager.getConnection(url, user, password);
 
                 st = con.createStatement();
 
@@ -43,7 +46,7 @@ class DatabaseFactory extends Config {
                 System.out.print("Student surname:");
                 String surname = kb.nextLine();
 
-                sql = String.format("INSERT INTO ogrenci VALUES(9 , '%s', '%s')", name, surname);
+                sql = String.format("INSERT INTO ogrenci VALUES(3 , '%s', '%s')", name, surname);
                 st.executeUpdate(sql);
         }
             catch (SQLException e) {
